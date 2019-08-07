@@ -10,8 +10,10 @@ from flask import (
 )
 
 from CTFd.models import db
-from CTFd.utils import admins_only, get_config, set_config
+from CTFd.utils.decorators import admins_only
+from CTFd.utils import get_config, set_config
 from CTFd import utils
+from CTFd.plugins import register_plugin_script 
 
 from thunderclient import Thunder
 
@@ -52,4 +54,4 @@ def load(app):
         "/notify/static/ctfd-notify.js"
     ]
     for s in scripts:
-        utils.register_plugin_script(s)
+        register_plugin_script(s)
